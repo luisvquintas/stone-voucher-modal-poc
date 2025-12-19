@@ -1,0 +1,56 @@
+:root {
+  /* Stone Brand Colors - Jade Design System */
+  --color-primary: #00A868;
+  /* Stone Green */
+  --color-primary-dark: #008552;
+  /* Stone Green Dark */
+  --color-primary-light: #E6F7F1;
+  /* Stone Green Light Background */
+  --color-accent: #00A868;
+  /* Same as primary for consistency */
+  --color-success: #00A868;
+  --color-error: #D32F2F;
+  --color-warning: #F5A623;
+  --color-text-main: #1A1A1A;
+  --color-text-muted: #666666;
+  --color-text-light: #999999;
+  --color-bg-body: #F5F7FA;
+  --color-bg-modal: #FFFFFF;
+  --color-border: #E0E0E0;
+  --color-border-focus: #00A868;
+  --shadow-sm: 0 4px 6px rgba(0, 0, 0, 0.05);
+  --shadow-lg: 0 10px 30px rgba(0, 0, 0, 0.15);
+  --radius-sm: 8px;
+  --radius-md: 12px;
+  --radius-lg: 16px;
+  --font-family: 'Inter', system-ui, -apple-system, sans-serif;
+  --transition: all 0.2s ease-in-out;
+}
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  font-family: var(--font-family);
+  background-color: var(--color-bg-body);
+  color: var(--color-text-main);
+  -webkit-font-smoothing: antialiased;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+}
+
+button {
+  cursor: pointer;
+  border: none;
+  font-family: inherit;
+}
+
+input {
+  font-family: inherit;
+  outline: none;
+}

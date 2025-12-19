@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Demo Stone Voucher Modal</title>
+    <!-- Include the Library CSS -->
+    <link rel="stylesheet" href="./dist/frontend.css?v=3">
+</head>
+
+<body style="font-family: sans-serif; padding: 40px; text-align: center; background: #f0f2f5;">
+
+    <h1>Stone Voucher Modal - Demo</h1>
+    <p>Simulando integração com plataforma de ecommerce</p>
+
+    <button id="pay-btn"
+        style="padding: 12px 24px; font-size: 16px; background: #00A868; color: white; border: none; border-radius: 6px; cursor: pointer;">
+        Pagar com Voucher
+    </button>
+
+    <div id="result"
+        style="margin-top: 20px; padding: 20px; border: 1px dashed #ccc; display: none; background: white; border-radius: 8px;">
+        <h3>Resultado:</h3>
+        <pre id="result-data" style="text-align: left;"></pre>
+    </div>
+
+    <!-- Include the Library Script -->
+    <script src="./dist/stone-voucher-modal.umd.js?v=3"></script>
+
+    <script>
+        document.getElementById('pay-btn').addEventListener('click', function () {
+            console.log('Opening StoneVoucherModal...');
+
+            window.StoneVoucherModal.open({
+                amount: 150.00,
+                currency: 'BRL',
+                voucherTypes: ['alimentação', 'refeição'],
+                voucherBrands: ['pluxee', 'vr', 'alelo', 'ticket'],
+                publicKey: 'pk_moNn00LhxPH2nedP', // Pagar.me Public Key
+                env: 'staging', // 'production' or 'staging'
+
+                onSuccess: function (data) {
+                    console.log('onSuccess called:', data);
+                    alert('Sucesso! Token: ' + data.card_token);
+                    document.getElementById('result').style.display = 'block';
+                    document.getElementById('result-data').textContent = JSON.stringify(data, null, 2);
+                    document.getElementById('result-data').style.color = 'green';
+                },
+
+                onError: function (error) {
+                    console.log('onError called:', error);
+                    alert('Erro: ' + error.error);
+                    document.getElementById('result').style.display = 'block';
+                    document.getElementById('result-data').textContent = JSON.stringify(error, null, 2);
+                    document.getElementById('result-data').style.color = 'red';
+                },
+
+                onClose: function () {
+                    console.log('onClose called');
+                    alert('Modal fechado pelo usuário');
+                }
+            });
+        });
+    </script>
+</body>
+
+</html>

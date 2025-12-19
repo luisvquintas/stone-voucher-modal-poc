@@ -1,0 +1,457 @@
+.voucher-form {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+    text-align: left;
+    width: 100%;
+}
+
+/* Acceptance Bar */
+.acceptance-bar {
+    display: flex;
+    flex-direction: column;
+    /* Stack label and logos */
+    gap: 8px;
+}
+
+.acceptance-logos {
+    display: flex;
+    gap: 12px;
+    align-items: center;
+    justify-content: center;
+    /* Left align */
+}
+
+.logo-badge {
+    width: 48px;
+    height: 30px;
+    background: #FFFFFF;
+    border: 1px solid #E2E8F0;
+    border-radius: 6px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 4px 6px;
+    transition: all 0.2s ease;
+}
+
+.logo-badge.active {
+    border-color: var(--color-primary);
+    box-shadow: 0 2px 4px rgba(90, 45, 130, 0.1);
+    transform: translateY(-1px);
+    opacity: 1;
+}
+
+.logo-badge.selectable:hover {
+    border-color: #94A3B8;
+    transform: translateY(-1px);
+}
+
+.logo-badge.dimmed {
+    opacity: 0.5;
+    background: #F8FAFC;
+    border-color: #F1F5F9;
+}
+
+.logo-badge.initial {
+    opacity: 1;
+    background: #FFFFFF;
+    border: 1px solid #E2E8F0;
+}
+
+.logo-badge.initial .brand-image {
+    filter: grayscale(0%);
+}
+
+.brand-image {
+    max-width: 100%;
+    max-height: 100%;
+    object-fit: contain;
+    filter: grayscale(100%);
+    transition: all 0.2s;
+}
+
+.logo-badge.active .brand-image {
+    filter: grayscale(0%);
+}
+
+/* Form Groups */
+.form-group {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+    position: relative;
+    width: 100%;
+}
+
+.form-label {
+    font-size: 13px;
+    font-weight: 600;
+    color: #475569;
+    /* margin-left: 2px; removed for strict align */
+    text-align: left;
+}
+
+/* Input Styling (Native-like Floating Labels) */
+.input-group {
+    position: relative;
+    width: 100%;
+}
+
+#cvv {
+    padding-right: 36px;
+}
+
+.input-wrapper {
+    position: relative;
+    display: flex;
+    align-items: center;
+    background: white;
+    border-radius: 6px;
+    transition: all 0.2s;
+    box-shadow: 0 1px 2px rgba(0, 0, 0, 0.05);
+    border: 1px solid #CBD5E1;
+    /* Border on wrapper now */
+}
+
+/* Remove border from input, wrapper handles it */
+.form-input {
+    width: 100%;
+    height: 56px;
+    /* Taller for floating label */
+    padding: 20px 16px 6px;
+    /* Initial padding for input text */
+    border-radius: 6px;
+    border: none;
+    font-size: 16px;
+    line-height: normal;
+    color: #0F172A;
+    background: transparent;
+    appearance: none;
+    font-family: inherit;
+    z-index: 1;
+}
+
+/* Fields with trailing icons need extra padding */
+#cardNumber,
+#cvv {
+    padding-right: 44px;
+}
+
+.error-message {
+    color: #EF4444;
+    font-size: 11px;
+    margin-top: 4px;
+    display: block;
+    line-height: 1.2;
+}
+
+.compact-row {
+    align-items: flex-start;
+}
+
+input:focus {
+    outline: none;
+    box-shadow: none;
+    /* Wrapper handles focus ring */
+}
+
+.input-wrapper:focus-within {
+    border-color: #1A1A1A;
+    box-shadow: 0 0 0 1px #1A1A1A;
+    z-index: 10;
+}
+
+.input-wrapper.error {
+    border-color: #EF4444;
+    box-shadow: 0 0 0 1px #EF4444;
+}
+
+/* Floating Label */
+.floating-label {
+    position: absolute;
+    left: 16px;
+    top: 18px;
+    /* Center vertically initially */
+    font-size: 16px;
+    color: #94A3B8;
+    pointer-events: none;
+    transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+    transform-origin: left top;
+    z-index: 2;
+}
+
+/* Floating State */
+.form-input:focus~.floating-label,
+.form-input:not(:placeholder-shown)~.floating-label {
+    transform: translateY(-10px) scale(0.75);
+    /* Move up and shrink */
+    color: #1A1A1A;
+    font-weight: 600;
+}
+
+.input-wrapper.error .floating-label {
+    color: #EF4444;
+}
+
+.form-input.error {
+    border-color: #EF4444;
+    box-shadow: 0 0 0 3px rgba(239, 68, 68, 0.1);
+}
+
+.form-input.success {
+    border-color: #22C55E;
+}
+
+/* Input Icons & Indicators */
+.input-icon {
+    position: absolute;
+    right: 14px;
+    color: #94A3B8;
+    pointer-events: none;
+    transition: color 0.2s;
+}
+
+.input-icon.valid {
+    color: #22C55E;
+}
+
+.input-icon.invalid {
+    color: #EF4444;
+}
+
+.brand-indicator {
+    position: absolute;
+    right: 48px;
+    /* Position before the status icon */
+    display: flex;
+    align-items: center;
+}
+
+/* Grid Layout */
+.form-row {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 16px;
+}
+
+/* Validation Messages */
+.error-message {
+    font-size: 12px;
+    color: #EF4444;
+    margin-top: 4px;
+    display: flex;
+    align-items: center;
+    gap: 4px;
+}
+
+.card-error {
+    background: #FEF2F2;
+    border: 1px solid #FECACA;
+    color: #B91C1C;
+    padding: 10px;
+    border-radius: 6px;
+    font-size: 13px;
+    margin-bottom: 8px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+/* Submit Button */
+.submit-button {
+    margin-top: 8px;
+    background: var(--color-primary);
+    color: white;
+    padding: 14px 20px;
+    border-radius: 8px;
+    font-weight: 600;
+    font-size: 16px;
+    transition: all 0.2s;
+    box-shadow: 0 4px 6px -1px rgba(0, 168, 104, 0.2), 0 2px 4px -1px rgba(0, 168, 104, 0.1);
+    position: relative;
+    overflow: hidden;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    /* Space between text and arrow */
+    width: 100%;
+}
+
+.submit-button span {
+    text-align: center;
+    width: 100%;
+}
+
+.btn-icon {
+    font-size: 18px;
+    margin-left: 8px;
+    transition: transform 0.2s;
+}
+
+/* Tooltip */
+.label-with-tooltip {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    height: 15px;
+}
+
+.label-with-tooltip label {
+    margin-bottom: 0;
+    font-size: 13px;
+    font-weight: 600;
+    color: #475569;
+}
+
+.cvv-hint-icon {
+    width: 20px;
+    height: 20px;
+    border-radius: 50%;
+    /* background: #E2E8F0; */
+    color: #94A3B8;
+    font-size: 14px;
+    font-weight: 700;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: help;
+    position: absolute;
+    right: 12px;
+    top: 50%;
+    transform: translateY(-50%);
+    transition: all 0.2s;
+    z-index: 5;
+}
+
+.cvv-hint-icon:hover {
+    color: var(--color-primary);
+    background: #F1F5F9;
+}
+
+.cvv-tooltip {
+    position: absolute;
+    bottom: 110%;
+    right: 0;
+    width: 280px;
+    background: #1E293B;
+    color: white;
+    padding: 12px;
+    border-radius: 8px;
+    box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.3);
+    font-size: 12px;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    z-index: 100;
+    animation: fadeIn 0.2s ease-out;
+}
+
+/* Tooltip Arrow */
+.cvv-tooltip::after {
+    content: '';
+    position: absolute;
+    bottom: -6px;
+    right: 14px;
+    width: 12px;
+    height: 12px;
+    background: #1E293B;
+    transform: rotate(45deg);
+}
+
+.tooltip-text {
+    flex: 1;
+}
+
+.tooltip-visual {
+    flex-shrink: 0;
+}
+
+/* CSS Card Visual for Tooltip */
+/* CSS Card Visual for Tooltip */
+.cvv-card-visual {
+    width: 60px;
+    height: 40px;
+    flex-shrink: 0;
+}
+
+.card-back {
+    width: 100%;
+    height: 100%;
+    background: #E2E8F0;
+    border-radius: 4px;
+    position: relative;
+    overflow: hidden;
+}
+
+.magnetic-strip {
+    width: 100%;
+    height: 8px;
+    background: #64748B;
+    margin-top: 6px;
+}
+
+.signature-strip {
+    height: 14px;
+    width: 45px;
+    background: #CBD5E1;
+    margin-top: 4px;
+    margin-left: 4px;
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    padding-right: 2px;
+}
+
+.cvv-code {
+    background: white;
+    font-family: monospace;
+    font-size: 8px;
+    color: #333;
+    padding: 1px 2px;
+    border: 1px solid #EF4444;
+    border-radius: 50%;
+    min-width: 18px;
+    text-align: center;
+    box-shadow: 0 0 0 1px #EF4444;
+    font-weight: bold;
+    line-height: 1;
+}
+
+.submit-button:hover:not(:disabled) .btn-icon {
+    transform: translateX(4px);
+}
+
+.submit-button:hover:not(:disabled) {
+    background: var(--color-primary-dark);
+    transform: translateY(-1px);
+    box-shadow: 0 10px 15px -3px rgba(0, 168, 104, 0.3);
+}
+
+.submit-button:active:not(:disabled) {
+    transform: translateY(0);
+}
+
+.submit-button:disabled {
+    background: #94A3B8;
+    cursor: not-allowed;
+    transform: none;
+    box-shadow: none;
+}
+
+/* Loader */
+.spinner {
+    width: 20px;
+    height: 20px;
+    border: 2px solid rgba(255, 255, 255, 0.3);
+    border-radius: 50%;
+    border-top-color: white;
+    animation: spin 0.8s linear infinite;
+    display: inline-block;
+}
+
+@keyframes spin {
+    to {
+        transform: rotate(360deg);
+    }
+}
