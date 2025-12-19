@@ -2,27 +2,28 @@ import React, { useState, useEffect } from 'react';
 import './VoucherForm.css';
 import { createCardToken, getBinInfo } from '../services/pagarme';
 import { luhnCheck, validateExpiry, formatCPF, validateCPF } from '../utils/validation';
+import { LOGO_PLUXEE, LOGO_VR, LOGO_ALELO, LOGO_TICKET } from '../assets/logoAssets';
 
-// Logos: Using local assets uploaded by user for perfect match
+// Logos: Using embedded base64 assets for CDN distribution
 const Logos = {
     pluxee: (props) => (
         <div className={`logo-badge ${props.className}`}>
-            <img src="/logos/pluxee.png" alt="Pluxee" className="brand-image" />
+            <img src={LOGO_PLUXEE} alt="Pluxee" className="brand-image" />
         </div>
     ),
     vr: (props) => (
         <div className={`logo-badge ${props.className}`}>
-            <img src="/logos/vr.png" alt="VR" className="brand-image" />
+            <img src={LOGO_VR} alt="VR" className="brand-image" />
         </div>
     ),
     alelo: (props) => (
         <div className={`logo-badge ${props.className}`}>
-            <img src="/logos/alelo.png" alt="Alelo" className="brand-image" />
+            <img src={LOGO_ALELO} alt="Alelo" className="brand-image" />
         </div>
     ),
     ticket: (props) => (
         <div className={`logo-badge ${props.className}`}>
-            <img src="/logos/ticket.png" alt="Ticket" className="brand-image" />
+            <img src={LOGO_TICKET} alt="Ticket" className="brand-image" />
         </div>
     ),
 };
